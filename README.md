@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Pokédex 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Objetivo 🌄
 
-In the project directory, you can run:
+Crear una aplicación web según los requerimientos pedidos relacionados con los wireframes de la carpeta 'Prueba Pokémon'.
 
-### `npm start`
+## Requerimientos generales ✅
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- La aplicación se debe crear utilizando React.js
+- Debe utilizar Functional Components y Styled Components.
+- Se debe aplicar Redux.
+- Se debe usar los servicios ofrecidos por [Poke Api](https://pokeapi.co/), sin embargo se pueden utilizar otros servicios adicionales.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Requerimientos 📖
+### Pantalla De inicio De Sesión
+Construir la vista basándose en el wireframe '1 Inicio de sesión'. Debe de considerar las siguientes funcionalidades:
 
-### `npm test`
+- Debe simular un inicio de sesión guardando los datos en localStorage.
+- Ambos campos son requeridos y tendrán la validación adecuada al tipo de información que contendrá.
+- Esta vista será la principal cuando no se haya simulado el inicio de Sesión, una vez que esto ocurra esta vista estará oculta e inaccesible.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Pantalla Principal
+Construir la vista basándose en los wireframes '2a Principal Modo Lista' y '2b Principal Modo Cuadrícula'. Debe de considerar las siguientes funcionalidades generales:
 
-### `npm run build`
+- El campo de texto que contiene el Placeholder "Buscar Pokémon" servirá para filtrar el contenido por nombre.
+- El grupo de botones "Lista", y "Cuadrícula" cambiará la forma en que se mostrará el contenido. Por defecto el modo "lista" estará seleccionado.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para el modo lista se debe basar el diseño en el wireframe '2a Principal Modo Lista' y considerar las siguientes funcionalidades:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Se mostrará los datos en modo de lista con las columnas correspondientes a los datos "Número", "Nombre", "Imagén", "Tipos" y "Habilidades".
+- Cada elemento de la lista tendrá un botón con la leyenda "Shiny", que al hacer clic sobre él se mostrará una ventana emergente que contiene las imágenes del pokémon correspondiente en su forma Variocolor o Shiny.
+- Al hacer clic en un elemento de la lista se redirigirá a la Pantalla de detalle con la información del pokémon correspondiente.
+- Debe contener soporte de paginación por botones.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Para el modo cuadrícula se debe basar el diseño en el wireframe '2b Principal Modo Cuadrícula' y considerar las siguientes funcionalidades:
 
-### `npm run eject`
+- Se mostrará los datos en modo de tarjeta con los datos, "Nombre", "Imagen", "Tipos" y "Habilidades" y un botón con la leyenda "Shiny", que al hacer click sobre él se mostrará una ventana emergenta que contiene las imagénes del pokémon correspondiente en su forma Variocolor o Shiny.
+- Al hacer clic en la tarjeta se redirigirá a la Pantalla de detalle con la información del pokémon correspondiente.
+- Debe contener soporte de paginación por Infinite Scroll.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Pantalla de detalle
+Construir la vista basandose en el wireframe '3 Vista Poke'. Debe de considerar las siguientes funcionalidades:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Se mostrará las imágenes correspondientes al pokémon, incluida su forma Variocolor o Shiny, en el formato de galería.
+- En la tarjeta superior izquierda se mostrarán los datos "Nombre", "Tipos" y "Descripción" del pokémon.
+- En la tarjeta inferior izquierda se mostrarán la lista de habilidades del pokémon con nombre y descripción.
+- En la tarjeta derecha se mostrarán una lista de 10 movimientos que el pokémon puede aprender. Cada movimiento debe contener los datos "Nombre", "Poder", "Precisión" y "Tipo"
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Puntos que valoraremos 🏁
+- Compromiso.
+- Creatividad.
+- Buenas prácticas.
+- Experiencia de las herramientas aplicadas.
+- Propuestas de mejora.
