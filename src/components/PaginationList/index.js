@@ -13,7 +13,7 @@ const PaginationList = () => {
 
     const changePage = (ev, value) => {
         ev.preventDefault();
-        dispatch(getAllPokemon(value));
+        dispatch(getAllPokemon(value));    // Busca los Pokemon correspondientes a la página
     }
 
     return (

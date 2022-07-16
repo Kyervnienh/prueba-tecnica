@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import { ListItemButton, ListItem, ListItemText, ListItemAvatar } from "@mui/material";
 import { Box } from "@mui/system";
+import ModalImage from "../ModalImage";
 
 
 const ItemList = (props) => {
+    const bgColor = props.even ? "#F9FAFC" : "";
+
+    const [open, setOpen] = useState(false)
 
     const selectPokemon = () => {
         console.log(props.name)
     }
-    const bgColor = props.even ? "#F9FAFC" : "";
+
+    const showShiny = () => {
+        setOpen(true);
+    }
+    const handleClose = () => setOpen(false)
 
     return (
         <ListItem sx={{ textAlign: 'center', fontSize: 14, padding: 0, color: '#8D949B' }}>
@@ -47,7 +55,7 @@ const ItemList = (props) => {
                     primary={props.abilities} />
             </Box>
             <ListItemButton
-                onClick={selectPokemon}
+                onClick={showShiny}
                 sx={{
                     width: '9%',
                     justifyContent: 'center',
@@ -61,6 +69,7 @@ const ItemList = (props) => {
                         backgroundColor: 'white'
                     }
                 }}>Shiny</ListItemButton>
+            <ModalImage open={open} handleClose={handleClose} images={props.shiny} />
         </ListItem>
     )
 }
@@ -70,7 +79,8 @@ ItemList.propTypes = {
     id: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
     abilities: PropTypes.string.isRequired,
-    sprite: PropTypes.string
+    sprite: PropTypes.string,
+    shiny: PropTypes.array.isRequired
 }
 
 export default ItemList;

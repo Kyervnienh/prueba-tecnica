@@ -44,8 +44,9 @@ const ContentList = () => {
                         id={item.id}
                         type={item.types.map(el => el.type.name).reduce((accum, current) => accum + " / " + current)}
                         abilities={item.abilities.map(el => el.ability.name).reduce((accum, current) => accum + " / " + current)}
-                        sprite={item.sprites.back_default}
+                        sprite={item.sprites.front_default}
                         name={item.name}
+                        shiny={[item.sprites.back_shiny,item.sprites.front_shiny]}
                         even={index % 2} />
                 )) : <ListItemText primary={"No se encontraron Pokemon"} /> // Si no se está haciendo una petición y no hay datos se muestra "No se encontraron Pokemon"
                 : <ListItemText primary={"Buscando Pokemon"} />  }
