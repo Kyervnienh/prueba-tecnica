@@ -55,7 +55,7 @@ const Login = () => {
                 justifyContent: 'center',
                 minHeight: '100vh'
             }}>
-                <Typography variant="h4" align="center" color="gray" fontWeight="bold">Pokedex</Typography>
+                <Typography variant="h4" align="center" color="gray" fontWeight="bold">Pokédex</Typography>
 
                 <Box
                     component="form"

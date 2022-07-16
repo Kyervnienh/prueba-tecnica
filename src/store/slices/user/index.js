@@ -21,5 +21,3 @@ export const { setUserData } = userSlice.actions;
 export const setUserLogged = () => (dispatch) => {
     if (JSON.parse(localStorage.getItem('user')).isLogged) dispatch(setUserData(JSON.parse(localStorage.getItem('user'))));
 }
-
-export default userSlice.reducer;
