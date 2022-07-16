@@ -70,7 +70,7 @@ ItemList.propTypes = {
     id: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
     abilities: PropTypes.string.isRequired,
-    sprite: PropTypes.string.isRequired
+    sprite: PropTypes.string
 }
 
 export default ItemList;

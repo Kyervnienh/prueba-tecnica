@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 export const pokemonSlice = createSlice({
     name: 'pokemon',
     initialState: {
-        page: 0,
         pokemon: [],
         pokemonData: {},
         isLoading: false
@@ -16,8 +15,8 @@ export const pokemonSlice = createSlice({
             state.pokemon = action.payload;
         },
         setPokemonData: (state, action) => {
-            state.pokemonData = action.payload
-        }
+            state.pokemonData = action.payload;
+        },
     }
 })
 
@@ -25,11 +24,11 @@ export const { loadPokemon, setPokemon, setPokemonData } = pokemonSlice.actions;
 
 // Peticiones
 
-export const getAllPokemon = (page = 0) => {
+export const getAllPokemon = (page = 1) => {
     return async (dispatch) => {
         dispatch(loadPokemon(true));
 
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=5&offset=${page * 5}`);  // Se obtienen los nombres de los Pokemon
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=5&offset=${(page - 1)* 5}`);  // Se obtienen los nombres de los Pokemon
         const data = await response.json();
 
         let pokemonData = []
@@ -41,7 +40,7 @@ export const getAllPokemon = (page = 0) => {
             pokemonData.push(dataElement)
         };
 
-        dispatch(setPokemon(data.results));
+        dispatch(setPokemon([data.count / 5,...data.results]));
         dispatch(setPokemonData(pokemonData))
         dispatch(loadPokemon(false));
     }

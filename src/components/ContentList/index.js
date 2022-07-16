@@ -4,7 +4,7 @@ import ItemList from "../ItemList";
 
 const ContentList = () => {
 
-    const { pokemon, pokemonData, isLoading } = useSelector(state => state.pokemon); 
+    const { pokemonData, isLoading } = useSelector(state => state.pokemon); 
 
     const fontStyle = { fontWeight: 'bold', fontSize: 14 }
 
@@ -38,13 +38,13 @@ const ContentList = () => {
             </ListItem>
 
             {!isLoading ?  // Comprueba si hay una petición activa a la API
-                pokemon.length ? pokemon.map((item, index) => (  // Comprueba si hay datos para mostrar
+                pokemonData.length ? pokemonData.map((item, index) => (  // Comprueba si hay datos para mostrar
                     <ItemList
                         key={item.name}
-                        id={pokemonData[index].id}
-                        type={pokemonData[index].types.map(el => el.type.name).reduce((accum, current) => accum + " / " + current)}
-                        abilities={pokemonData[index].abilities.map(el => el.ability.name).reduce((accum, current) => accum + " / " + current)}
-                        sprite={pokemonData[index].sprites.back_default}
+                        id={item.id}
+                        type={item.types.map(el => el.type.name).reduce((accum, current) => accum + " / " + current)}
+                        abilities={item.abilities.map(el => el.ability.name).reduce((accum, current) => accum + " / " + current)}
+                        sprite={item.sprites.back_default}
                         name={item.name}
                         even={index % 2} />
                 )) : <ListItemText primary={"No se encontraron Pokemon"} /> // Si no se está haciendo una petición y no hay datos se muestra "No se encontraron Pokemon"
