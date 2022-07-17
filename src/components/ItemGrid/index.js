@@ -12,14 +12,21 @@ const ItemGrid = (props) => {
     }
     const handleClose = () => setOpen(false)
 
+    const goToDescription = (ev) => {
+        window.location.href = ev.currentTarget.id;
+    }
+
     return (
-        <Grid item xs={1} md={1} padding="auto">
+        <Grid item xs={1} md={1} lg={1} padding="auto">
             <Card sx={{
                 width: '100%',
-                minWidth: '200px',
-                height: '300px'
+                maxWidth: '250px',
+                height: '300px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                border: '1px solid #EFF2F7',
             }}>
-                <CardActionArea>
+                <CardActionArea id={props.name} onClick={goToDescription}>
                     <CardMedia
                         component="img"
                         height="150"
@@ -36,7 +43,8 @@ const ItemGrid = (props) => {
                             display: 'flex',
                             justifyContent: 'space-between',
                             alignItems: 'center',
-                            color: 'gray'
+                            color: 'gray',
+                            marginTop: 1
                         }}>
                             {props.abilities.map((el, index) =>
                                 <Typography

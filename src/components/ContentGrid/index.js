@@ -8,7 +8,8 @@ import LoadingComponent from '../LoadingComponent';
 
 const ContentGrid = () => {
 
-    const { pokemonData, isLoading, page } = useSelector(state => state.pokemon);
+    const { pokemonData, isLoading, page, total } = useSelector(state => state.pokemon);
+    const count = Math.ceil(total) * 8 || 1
     const dispatch = useDispatch();
 
     const getNextPokemon = () => {
@@ -26,13 +27,13 @@ const ContentGrid = () => {
                 <InfiniteScroll
                 dataLength={pokemonData.length}
                 next={getNextPokemon}
-                hasMore={true}
+                hasMore={(pokemonData.length < count)}
                 loader={<LoadingComponent />}
                 endMessage={
-                    <Typography>Ya no quedan más Pokémon por ver :(</Typography>
+                    <Typography>Esos son todos los Pokemon</Typography>
                 }
                 >
-                    <Grid container spacing={8} columns={{ xs: 1, md: 4 }} sx={{ paddingTop: 5, paddingBottom: 5 }}>
+                    <Grid container spacing={6} columns={{ xs: 1, sm: 2, md: 3, lg: 4 }} sx={{ paddingTop: 5, paddingBottom: 5 }}>
                         {pokemonData.map(item => (
                             <ItemGrid
                                 key={item.id}
@@ -44,7 +45,7 @@ const ContentGrid = () => {
                         ))}
                     </Grid>
                 </InfiniteScroll>
-                : <Typography> No se encontraon Pokemon</Typography> // Si no se está haciendo una petición y no hay datos se muestra "No se encontraron Pokemon"
+                : <Typography> No se encontraron Pokemon</Typography> // Si no se está haciendo una petición y no hay datos se muestra "No se encontraron Pokemon"
             : <LoadingComponent />
 
     )

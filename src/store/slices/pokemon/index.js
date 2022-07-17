@@ -23,7 +23,8 @@ export const pokemonSlice = createSlice({
         },
         concatPokemonData: (state, action) => {
             state.pokemonData = state.pokemonData.concat(action.payload.pokemonData);
-            state.page = action.payload.page
+            state.page = action.payload.page;
+            state.total = action.payload.total;
         }
     }
 })
@@ -52,7 +53,7 @@ export const getAllPokemon = (page = 1, limit = 5) => {
             pokemonData.push(dataElement)
         };
 
-        dispatch(setPokemonData({ total: data.count / 5, page: page, pokemonData: pokemonData }))
+        dispatch(setPokemonData({ total: data.count / limit, page: page, pokemonData: pokemonData }))
         dispatch(loadPokemon(false));
     }
 }
@@ -63,13 +64,36 @@ export const getPokemon = (name) => { // Busca un Pokemon en especifico
     return async (dispatch) => {
         dispatch(loadPokemon(true));
 
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);  // Se obtienen algunos datos del Pokemon
         if (response.ok) {
             const data = await response.json();
 
-            dispatch(setPokemonData({pokemonData: [data]}));
+            const dataSpecies = await fetch(data.species.url); // Se obtienen los datos de la especie
+            const dataSpeciesFormat = await dataSpecies.json();
+
+            let abilitiesData = [];
+
+            for (let i = 0; i < data.abilities.length; i++) {
+                const abilityData = await fetch(data.abilities[i].ability.url);          // Se obtienen los datos de las habilidades del Pokemon
+                const abilityDataFormat = await abilityData.json();
+
+                abilitiesData.push(abilityDataFormat)
+            }
+
+            const firstMoves = data.moves.slice(0, 10);    // Se obtienen los nombres de los primeros 10 movimientos
+
+            let movesData = [];
+
+            for (let i = 0; i < firstMoves.length; i++) {
+                const moveData = await fetch(firstMoves[i].move.url);       // Se obtienen los datos de cada movimiento
+                const moveDataFormat = await moveData.json();
+
+                movesData.push(moveDataFormat);
+            }
+
+            dispatch(setPokemonData({ pokemonData: [{ ...data, dataSpecies: dataSpeciesFormat, abilitiesData: abilitiesData, movesData: movesData }] }));
         } else {
-            dispatch(setPokemonData({pokemonData: []}));
+            dispatch(setPokemonData({ pokemonData: [] }));
         }
 
         dispatch(loadPokemon(false));
@@ -90,6 +114,6 @@ export const concatGetAllPokemon = (page = 1, limit = 5) => {
             pokemonData.push(dataElement)
         };
 
-        dispatch(concatPokemonData({ page: page, pokemonData: pokemonData }))
+        dispatch(concatPokemonData({total: data.count / limit, page: page, pokemonData: pokemonData }))
     }
 }

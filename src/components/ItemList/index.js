@@ -13,13 +13,14 @@ const ItemList = (props) => {
     const showShiny = () => setOpen(true);
     const handleClose = () => setOpen(false)
 
-    const selectPokemon = () => {
-        console.log(props.name)
+    const selectPokemon = (ev) => {
+        window.location.href = ev.currentTarget.id;
     }
 
     return (
         <ListItem sx={{ textAlign: 'center', fontSize: 14, padding: 0, color: '#8D949B' }}>
-            <Box sx={{
+            <Box id={props.name} onClick={selectPokemon}
+            sx={{
                 display: 'flex',
                 alignItems: 'center',
                 width: '90%',
@@ -32,25 +33,23 @@ const ItemList = (props) => {
                 }
             }}>
                 <ListItemText
-                    onClick={selectPokemon}
                     sx={{ width: '10%' }}
                     primary={props.id} />
 
-                <ListItemText onClick={selectPokemon}
+                <ListItemText 
                     sx={{ width: '25%' }}
                     primary={props.name} />
 
-                <ListItemAvatar onClick={selectPokemon} sx={{ width: '20%' }}>
+                <ListItemAvatar
+                sx={{ width: '20%' }}>
                     <img src={props.sprite} alt={props.name} />
                 </ListItemAvatar>
 
                 <ListItemText
-                    onClick={selectPokemon}
                     sx={{ width: '20%' }}
                     primary={props.type} />
 
                 <ListItemText
-                    onClick={selectPokemon}
                     sx={{ width: '25%' }}
                     primary={props.abilities} />
             </Box>
