@@ -10,14 +10,12 @@ const ItemList = (props) => {
 
     const [open, setOpen] = useState(false)
 
+    const showShiny = () => setOpen(true);
+    const handleClose = () => setOpen(false)
+
     const selectPokemon = () => {
         console.log(props.name)
     }
-
-    const showShiny = () => {
-        setOpen(true);
-    }
-    const handleClose = () => setOpen(false)
 
     return (
         <ListItem sx={{ textAlign: 'center', fontSize: 14, padding: 0, color: '#8D949B' }}>
@@ -37,6 +35,7 @@ const ItemList = (props) => {
                     onClick={selectPokemon}
                     sx={{ width: '10%' }}
                     primary={props.id} />
+
                 <ListItemText onClick={selectPokemon}
                     sx={{ width: '25%' }}
                     primary={props.name} />
@@ -49,11 +48,13 @@ const ItemList = (props) => {
                     onClick={selectPokemon}
                     sx={{ width: '20%' }}
                     primary={props.type} />
+
                 <ListItemText
                     onClick={selectPokemon}
                     sx={{ width: '25%' }}
                     primary={props.abilities} />
             </Box>
+
             <ListItemButton
                 onClick={showShiny}
                 sx={{
@@ -69,6 +70,7 @@ const ItemList = (props) => {
                         backgroundColor: 'white'
                     }
                 }}>Shiny</ListItemButton>
+
             <ModalImage open={open} handleClose={handleClose} images={props.shiny} />
         </ListItem>
     )
@@ -80,7 +82,7 @@ ItemList.propTypes = {
     type: PropTypes.string.isRequired,
     abilities: PropTypes.string.isRequired,
     sprite: PropTypes.string,
-    shiny: PropTypes.array.isRequired
+    shiny: PropTypes.array
 }
 
 export default ItemList;

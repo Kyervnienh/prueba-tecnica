@@ -18,8 +18,9 @@ const ModalImage = (props) => {
                 justifyContent: 'space-around',
                 alignItems: 'center'
             }}>
-                <img src={props.images[0]} alt="Shiny images" style={{ minWidth: "120px" }} />
-                <img src={props.images[1]} alt="Shiny images" style={{ minWidth: "120px" }} />
+                {props.images.map( (el, index) => (
+                    <img key={index} src={el} alt="shiny form" style={{ minWidth: "120px" }} /> 
+                ))}
             </Box>
         </Modal>
     )

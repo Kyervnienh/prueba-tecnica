@@ -7,7 +7,7 @@ const PaginationList = () => {
 
     const bgColor = "gray"
 
-    const count = Math.ceil(useSelector(state => state.pokemon.pokemon[0])) || 1;
+    const count = Math.ceil(useSelector(state => state.pokemon.total)) || 1;
 
     const dispatch = useDispatch();
 

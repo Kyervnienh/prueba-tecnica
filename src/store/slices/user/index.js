@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
     name: 'user',
     initialState: {
+        isLogged: false,
         data: {
-            isLogged: false,
             email: "",
             token: 0
         }
@@ -12,12 +12,20 @@ export const userSlice = createSlice({
     reducers: {
         setUserData: (state, action) => {
             state.data = action.payload;
+        },
+        setLoggedStatus: (state, action) => {
+            state.isLogged = action.payload
         }
     }
 });
 
-export const { setUserData } = userSlice.actions;
+export const { setUserData, setLoggedStatus } = userSlice.actions;
 
-export const setUserLogged = () => (dispatch) => {
-    if (JSON.parse(localStorage.getItem('user')).isLogged) dispatch(setUserData(JSON.parse(localStorage.getItem('user'))));
+export const setUserLogged = (email, token) => (dispatch) => {
+    dispatch(setUserData({email: email, token: token}));
+    dispatch(setLoggedStatus(true));
+}
+
+export const setUserLogOut = () => (dispatch) => {
+    dispatch(setLoggedStatus(false));
 }

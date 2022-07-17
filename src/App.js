@@ -8,10 +8,14 @@ import Main from './pages/Main';
 function App() {
 
   const dispatch = useDispatch();
-  const { isLogged } = useSelector(state => state.user.data);
+  const { isLogged } = useSelector(state => state.user);
 
   useEffect(() => {
-    dispatch(setUserLogged());
+
+    const userIsLogged = localStorage.getItem('user')
+
+    if(userIsLogged) dispatch(setUserLogged(JSON.parse(userIsLogged).email, JSON.parse(userIsLogged).token));
+
   }, [dispatch]);
 
   return (

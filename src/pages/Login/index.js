@@ -10,7 +10,7 @@ const Login = () => {
 
     const dispatch = useDispatch();
 
-    const emailValidation = (ev) => {
+    const emailValidation = (ev) => {  // Se valida que el email tenga la sintaxis correcta
         ev.preventDefault();
 
         const emailRegex = new RegExp('[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}');
@@ -36,14 +36,12 @@ const Login = () => {
             const token = Math.floor(Math.random() * 100) + 1;
 
             localStorage.setItem('user', JSON.stringify({
-                isLogged: true,
                 email: dataUser.email,
                 token: token
             }));
 
-            dispatch(setUserLogged());
+            dispatch(setUserLogged(dataUser.email, token));
         }
-
     }
 
     return (

@@ -5,7 +5,7 @@ import { getPokemon } from '../../store/slices/pokemon';
 
 const SearchComponent = () => {
 
-    const Search = styled('div')(({ theme }) => ({
+    const Search = styled('div')( () => ({
         position: 'relative',
         borderRadius: 8,
         width: '34%',
